@@ -14,8 +14,8 @@ double right(double b, double c, double t, double h, double lambda){
 
 int main() {
     const double pi = 3.141592653589793;
-    double tau = pi/1000;
-    double h = pi/100;
+    double tau = pi/999;
+    double h = pi/99;
     vector<double> k1;// invariant 1
     vector<double> k2;// invariant 2
     vector<double> u;
