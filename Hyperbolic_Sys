@@ -32,13 +32,13 @@ int main() {
         k1[i] = v[i] + u[i];
         k2[i] = v[i] - u[i];
     }
-    //для характеристик: 1)lambda = 1, x - t = const: LEFT_corn; 2)lambda = -1, x + t = const : RIGTH_corn ;
+    //для характеристик: 1)lambda = 1, x - t = const: RIGHT_corn; 2)lambda = -1, x + t = const : LEFT_corn ;
     for (int n = 1;n < 1000;n++){
         for(int m = 1;m < 100;m++){
-            k1[n*100 + m] = left(k1[(n-1)*100 + m], k1[(n-1)*100 + m-1], tau, h, lambda1);
+            k1[n*100 + m] = right(k1[(n-1)*100 + m], k1[(n-1)*100 + m+1], tau, h, lambda1);
         }
         for(int m = 0;m<99;m++){
-            k2[n*100 + m] = right(k2[(n-1)*100 + m], k2[(n-1)*100 + m+1], tau, h, lambda2);
+            k2[n*100 + m] = left(k2[(n-1)*100 + m], k2[(n-1)*100 + m-1], tau, h, lambda2);
         }
         k1[n*100] = (sin(tau*n)+cos(tau*n));
         k2[n*100+99] = (cos(tau*n)-sin(tau*n));
