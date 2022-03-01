@@ -40,8 +40,8 @@ int main() {
         for(int m = 0;m<99;m++){
             k2[n*100 + m] = right(k2[(n-1)*100 + m], k2[(n-1)*100 + m+1], tau, h, lambda2);
         }
-        k1[n*100] = (sin(tau*n)+cos(tau*n)) / 2;
-        k2[n*100+99] = (cos(tau*n)-sin(tau*n)) /2;
+        k1[n*100] = (sin(tau*n)+cos(tau*n));
+        k2[n*100+99] = (cos(tau*n)-sin(tau*n));
         for(int m = 0;m<100;m++){
             v[n*100 + m] = (k1[n*100 + m] + k2[n*100 + m]) / 2;
             u[n*100 + m] = (k1[n*100 + m] - k2[n*100 + m]) / 2;
