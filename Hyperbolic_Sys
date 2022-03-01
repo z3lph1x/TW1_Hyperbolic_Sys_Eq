@@ -1,0 +1,55 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+
+using namespace std;
+
+double left(double b, double c, double t, double h, double lambda){
+    return  b + lambda*t/h*(c - b);
+}
+double right(double b, double c, double t, double h, double lambda){
+    return  b + lambda*t/h*(b - c);
+}
+
+
+int main() {
+    double tau = 0.01;
+    const double pi = 3.141592653589793;
+    double h = pi/100;
+    vector<double> k1;// invariant 1
+    vector<double> k2;// invariant 2
+    vector<double> u;
+    vector<double> v;
+    double lambda1 = 1;
+    double lambda2 = -1;
+    k1.resize(100000);
+    k2.resize(100000);
+    u.resize(100000);
+    v.resize(100000);
+    for(int i = 0;i++;i<1000){
+        u[i] = sin(i*h);
+        v[i] = cos(i*h);
+        k1[i] = v[i] + u[i];
+        k2[i] = v[i] - u[i];
+    }
+    //для характеристик: 1)lambda = 1, x - t = const: LEFT_corn; 2)lambda = -1, x + t = const : RIGTH_corn ;
+    for (int n = 1;n++;n < 1000){
+        for(int m = 1;m++;m < 100){
+            k1[n*100 + m] = left(k1[(n-1)*100 + m], k1[(n-1)*100 + m-1], tau, h, lambda1);
+        }
+        for(int m = 0;m++;m<99){
+            k2[n*100 + m] = right(k2[(n-1)*100 + m], k2[(n-1)*100 + m+1], tau, h, lambda2);
+        }
+        k1[n*100] = (sin(tau*n)+cos(tau*n)) / 2;
+        k2[n*100+99] = (cos(tau*n)-sin(tau*n)) /2;
+        for(int m = 0;m++;m<100){
+            v[n*100 + m] = (k1[n*100 + m] + k2[n*100 + m]) / 2;
+            u[n*100 + m] = (k1[n*100 + m] - k2[n*100 + m]) / 2;
+        }
+    }
+
+}
+
+
+
+
